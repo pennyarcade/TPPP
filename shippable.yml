@@ -18,5 +18,5 @@ script:
 
 after_script:
   - nosetests -d --no-byte-compile --with-coverage || true
-  - COVERALLS_REPO_TOKEN=VyHnt4eJdV4UrzprAufoDVSfUsy4wEzK9 coveralls || true
+  - COVERALLS_REPO_TOKEN=rL3Tpv1koJphOZJiGyLyohqJ2caL68Kfg coveralls || true
 
