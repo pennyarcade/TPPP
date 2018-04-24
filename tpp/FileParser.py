@@ -1,4 +1,7 @@
-from tpp import Page
+"""
+Opens a TPP source file and returns a list of page objects
+"""
+from tpp.Page import Page
 
 
 class FileParser(object):

@@ -144,7 +144,7 @@ class NCursesVisualizer(TPPVisualizer):
                 rc = os.system(string)
                 if not rc:
                     self.screen.mvaddstr(
-                        self.termheight/4, 1, "Error: Exec \"%s\" failed with error code #%s" % (string, rc)
+                        self.termheight / 4, 1, "Error: Exec \"%s\" failed with error code #%s" % (string, rc)
                     )
                     self.screen.mvaddstr(
                         self.termheight - 2, self.termwidth / 2 - len(message) / 2, message
@@ -162,7 +162,7 @@ class NCursesVisualizer(TPPVisualizer):
                 curser_pos = max(0, curser_pos + 1)  # jump one character to the left
             elif ch == curses.KEY_BACKSPACE:
                 # Todo: check range expressions
-                string = string[0 .. max(0, curser_pos - 1)] + string[curser_pos .. -1]
+                string = string[0, max(0, curser_pos - 1)] + string[curser_pos, -1]
                 curser_pos = max(0, curser_pos - 1)
                 window.mvaddstr(
                     self.termheight / 4, 1 + len(prompt) + len(string), " "
@@ -195,7 +195,7 @@ class NCursesVisualizer(TPPVisualizer):
             for y in range(1, self.termheight - 3):
                 s.move(y, 0)
                 s.addstr('|')
-                s.move(y, self.termwidth -1)
+                s.move(y, self.termwidth - 1)
                 s.addstr('|')
 
     def new_page(self):
@@ -287,7 +287,7 @@ class NCursesVisualizer(TPPVisualizer):
                 s.move(self.cur_line, self.indent)
                 if self.output or self.shelloutput:
                     s.addstr(' |')
-                s.move(self.cur_line, self.termwidth - len(line) -5)
+                s.move(self.cur_line, self.termwidth - len(line) - 5)
                 s.addstr(line)
                 if self.output or self.shelloutput:
                     s.addstr(' |')
@@ -403,7 +403,7 @@ class NCursesVisualizer(TPPVisualizer):
         :param footer_text:
         :return:
         """
-        self.screen.move(self.termheight -3, (self.termwidth - len(footer_text) / 2))
+        self.screen.move(self.termheight - 3, (self.termwidth - len(footer_text) / 2))
         self.screen.addstr(footer_text)
 
     def do_header(self, header_text):
@@ -670,7 +670,7 @@ class NCursesVisualizer(TPPVisualizer):
                     sleep(float(1) / 20)
         elif self.slidedir == "BOTTOM":
             new_scr = self.screen.dupwin()
-            for i in range(self.termheight -1, self.cur_line, -1):
+            for i in range(self.termheight - 1, self.cur_line, -1):
                 with self.screen as s:
                     # Todo: How to do this in python curses?
                     # curses.overwrite(new_scr. s)
@@ -702,7 +702,7 @@ class NCursesVisualizer(TPPVisualizer):
                 else:
                     s.addstr(line)
                 if (self.output or self.shelloutput) and not self.slideoutput:
-                    s.move(self.cur_line, self.termwidth - self.indent -2)
+                    s.move(self.cur_line, self.termwidth - self.indent - 2)
                     s.addstr(" |")
             self.cur_line += 1
 
@@ -733,7 +733,7 @@ class NCursesVisualizer(TPPVisualizer):
             for i in range(1, len(pages)):
                 s.move(line, col * 15 + 2)
                 if current_page == i:
-                    s.addstr("%2d %s <=" % (i+1, pages[i].title[0..80]))
+                    s.addstr("%2d %s <=" % (i + 1, pages[i].title[0..80]))
                 else:
                     s.addstr("%2d %s" % (i + 1, pages[i].title[0..80]))
                 line += 1
@@ -742,17 +742,17 @@ class NCursesVisualizer(TPPVisualizer):
                     col += 1
             prompt = "jump to slide: "
             prompt_indent = 12
-            s.move(self.termheight -2, self.indent + prompt_indent)
+            s.move(self.termheight - 2, self.indent + prompt_indent)
             s.addstr(prompt)
             # s.refresh()
             curses.echo()
             s.scan("%d" % page)
             curses.noecho()
-            s.move(self.termheight -2, self.indent + prompt_indent)
+            s.move(self.termheight - 2, self.indent + prompt_indent)
             s.addstr(" " + len(prompt) + len(str(page[0])))
             if page[0]:
                 return page[0] - 1
-            return - 1 # invalid page
+            return - 1  # invalid page
 
     def store_screen(self):
         """
@@ -780,7 +780,7 @@ class NCursesVisualizer(TPPVisualizer):
         :param eop:
         :return:
         """
-        self.screen.move(self.termheight -2, self.indent)
+        self.screen.move(self.termheight - 2, self.indent)
         self.screen.attroff(curses.A_BOLD)  # this is bad
         self.screen.addstr("[slide #%d/%d]" % (cur_page, max_pages))
         if len(self.footer) > 0:
@@ -796,7 +796,7 @@ class NCursesVisualizer(TPPVisualizer):
 
         :return:
         """
-        self.screen.move(self.termheight -2, self.indent -1)
+        self.screen.move(self.termheight - 2, self.indent -1)
         self.screen.attron(curses.A_BOLD)
         self.screen.addstr('*')
         self.screen.attroff(curses.A_BOLD)

@@ -1,6 +1,11 @@
+"""
+Maps color names to constants and indexes.
+"""
+
+
 class ColorMap(object):
     """
-    maps color names to constants and indexes
+    Maps color names to constants and indexes.
     """
     colors = {
         "black":   "COLOUR_BLACK",

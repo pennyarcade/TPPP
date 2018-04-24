@@ -51,5 +51,4 @@ class Switch(object):
         elif self.value in args:  # changed for v1.5, see below
             self.fall = True
             return True
-        else:
-            return False
+        return False

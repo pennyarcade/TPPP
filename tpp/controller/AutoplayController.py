@@ -5,7 +5,7 @@ Implements a non interactive controller for terminal. Useful for displaying unat
 from time import sleep
 
 from tpp.FileParser import FileParser
-from tpp.controller.TPPController import TPPController
+from TPPController import TPPController
 
 
 class AutoplayController(TPPController):
@@ -49,7 +49,7 @@ class AutoplayController(TPPController):
             parser = FileParser(self.filename)
             self.pages = parser.get_pages()
             if self.cur_page >= len(self.pages):
-                self.cur_page = len(self.pages) -1
+                self.cur_page = len(self.pages) - 1
             self.vis.clear()
             self.vis.new_page()
             self.do_run()

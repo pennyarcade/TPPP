@@ -1,10 +1,15 @@
+"""
+Implements a generic visualizer from which all other visualizers need to be derived.
+"""
+
+
 import abc
 import textwrap
 
 
 class TPPVisualizer(object):
     """
-    Implements a generic visualizer from wich all other visualizers need to be derived.
+    Implements a generic visualizer from which all other visualizers need to be derived.
     """
     __metaclass__ = abc.ABCMeta
 
@@ -37,7 +42,7 @@ class TPPVisualizer(object):
         :param footer_text:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_header(self, header_text):
@@ -47,7 +52,7 @@ class TPPVisualizer(object):
         :param header_text:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_refresh(self):
@@ -56,7 +61,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def new_page(self):
@@ -65,7 +70,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_heading(self, text):
@@ -75,7 +80,7 @@ class TPPVisualizer(object):
         :param text:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_withborder(self):
@@ -84,7 +89,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_horline(self):
@@ -93,7 +98,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_color(self, text):
@@ -103,7 +108,7 @@ class TPPVisualizer(object):
         :param text:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_center(self, text):
@@ -113,7 +118,7 @@ class TPPVisualizer(object):
         :param text:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_right(self, text):
@@ -123,7 +128,7 @@ class TPPVisualizer(object):
         :param text:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_exec(self, cmdline):
@@ -133,7 +138,7 @@ class TPPVisualizer(object):
         :param cmdline:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_wait(self):
@@ -142,7 +147,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_begin_output(self):
@@ -151,7 +156,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_begin_shell_output(self):
@@ -160,7 +165,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_end_output(self):
@@ -169,7 +174,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_end_shell_output(self):
@@ -178,7 +183,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_sleep(self, seconds):
@@ -188,7 +193,7 @@ class TPPVisualizer(object):
         :param seconds: Time to sleep
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_bold_on(self):
@@ -197,7 +202,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_bold_off(self):
@@ -206,7 +211,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_rev_on(self):
@@ -215,7 +220,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_rev_off(self):
@@ -224,7 +229,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_ul_on(self):
@@ -233,7 +238,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_ul_off(self):
@@ -242,7 +247,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_begin_slide_left(self):
@@ -251,7 +256,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_end_slide(self):
@@ -260,7 +265,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_command_prompt(self):
@@ -269,7 +274,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_begin_slide_right(self):
@@ -278,7 +283,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_begin_slide_top(self):
@@ -287,7 +292,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_begin_slide_bottom(self):
@@ -296,7 +301,7 @@ class TPPVisualizer(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_set_huge_font(self, params):
@@ -306,7 +311,7 @@ class TPPVisualizer(object):
         :param params: list of parameters
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_huge(self, text):
@@ -316,7 +321,7 @@ class TPPVisualizer(object):
         :param text:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def print_line(self, line):
@@ -326,7 +331,7 @@ class TPPVisualizer(object):
         :param line:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_title(self, text):
@@ -336,7 +341,7 @@ class TPPVisualizer(object):
         :param text:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_author(self, author):
@@ -346,7 +351,7 @@ class TPPVisualizer(object):
         :param author:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_date(self, date):
@@ -356,7 +361,7 @@ class TPPVisualizer(object):
         :param date:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_bgcolor(self, color):
@@ -366,7 +371,7 @@ class TPPVisualizer(object):
         :param color:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def do_fgcolor(self, color):
@@ -376,7 +381,7 @@ class TPPVisualizer(object):
         :param color:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError ()
 
     @abc.abstractmethod
     def do_color(self, color):
@@ -386,7 +391,7 @@ class TPPVisualizer(object):
         :param color:
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def visualize(self, line, eop):
         """
@@ -481,8 +486,7 @@ class TPPVisualizer(object):
             return self.do_fgcolor(line.replace('--fgcolor', '').strip())
         elif line.startswith('--color'):
             return self.do_color(line.replace('--color', '').strip())
-        else:
-            return self.print_line(line.strip())
+        return self.print_line(line.strip())
 
     def close(self):
         """

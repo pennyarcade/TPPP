@@ -1,3 +1,8 @@
+"""
+Represents a page (aka 'slide') in TPP. A page consists of a title and one or more lines
+"""
+
+
 class Page(object):
     """
     Represents a page (aka 'slide') in TPP. A page consists of a title and one or more lines
