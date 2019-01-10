@@ -5,7 +5,7 @@ Implements a non interactive controller for terminal. Useful for displaying unat
 from time import sleep
 
 from tpp.FileParser import FileParser
-from TPPController import TPPController
+from tpp.controller.TPPController import TPPController
 
 
 class AutoplayController(TPPController):
