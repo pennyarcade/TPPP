@@ -2,6 +2,7 @@ import curses
 import os
 import random
 import textwrap
+import re
 from time import sleep
 
 from tpp.ColorMap import ColorMap
@@ -17,20 +18,13 @@ class NCursesVisualizer(TPPVisualizer):
         """
         Todo: ApiDoc
         """
-        try:
-            import curses
-        except ImportError:
-            print "Curses module cannot be loaded."
-            print "Exiting..."
-            quit(1)
-
         self.figletfont = "standard"
 
         self.screen = curses.initscr()
         curses.curs_set(0)
         curses.cbreak()  # unbuffered input
         curses.noecho()  # turn off input echoing
-        self.screen.intrflush(False)
+        curses.qiflush(False)
         self.screen.keypad(True)
 
         self.setsizes()
@@ -38,7 +32,7 @@ class NCursesVisualizer(TPPVisualizer):
         curses.start_color()
         curses.use_default_colors()
         self.do_bgcolor('black')
-        # do_fgcolor("white")
+        self.do_fgcolor("white")
         self.fgcolor = ColorMap.get_color_pair('white')
         self.voffset = 5
         self.indent = 3
@@ -50,6 +44,7 @@ class NCursesVisualizer(TPPVisualizer):
         self.withborder = False
         self.slideoutput = False
         self.slidedir = "LEFT"
+        self.fgcolor = None
 
     def get_key(self):
         """
@@ -168,7 +163,7 @@ class NCursesVisualizer(TPPVisualizer):
                     self.termheight / 4, 1 + len(prompt) + len(string), " "
                 )
             # Todo: How does this expression work in python?
-            elif " "[0]..255:
+            elif " ": #[0]..255:
                 if curser_pos < max_len:
                     string[curser_pos, 0] = chr(ch)
                     curser_pos += 1
@@ -570,7 +565,8 @@ class NCursesVisualizer(TPPVisualizer):
         :return:
         """
         width = self.termwidth - self.indent
-        width -= 2 if self.output or self.shelloutput
+        if self.output or self.shelloutput:
+            width -= 2
         op = os.popen("figlet -f %s -w %d -k %s" % (self.figletfont, width, text), 'r')
         for line in op.readlines():
             self.print_line(line)
@@ -594,9 +590,11 @@ class NCursesVisualizer(TPPVisualizer):
         curses.init_pair(8, curses.COLOR_BLACK, bgcolor)
         if self.fgcolor:
             # Todo: how to do this in python curses?
-            curses.bkgd(curses.color_pair(self.fgcolor))
+            # curses.bkgd(curses.color_pair(self.fgcolor))
+            pass
         else:
-            curses.bkgd(curses.color_pair(1))
+            # curses.bkgd(curses.color_pair(1))
+            pass
 
     def do_fgcolor(self, color):
         """
@@ -645,7 +643,7 @@ class NCursesVisualizer(TPPVisualizer):
                 with self.screen as s:
                     s.move(self.cur_line, self.indent)
                     # Todo: check python list slicing
-                    s.addstr(line[xcount .. len(line) - 1])
+                    # s.addstr(line[xcount .. len(line) - 1])
                     s.refresh()
                 sleep(float(1) / 20)
         elif self.slidedir == "RIGHT":
@@ -695,7 +693,7 @@ class NCursesVisualizer(TPPVisualizer):
                 if self.output or self.shelloutput:
                     s.addstr("| ")
                 # Todo: How does this work in python??
-                if self.shelloutput and (line =~ "/^\$/" or line =~ "/^%/" or line =~ "/^#/"):
+                if self.shelloutput and (re.match(r'^\$', line) or re.match(r'^%', line) or re.match(r'^#', line)):
                     self.type_line(line)
                 elif self.slideoutput:
                     self.slide_text(line)
@@ -733,9 +731,9 @@ class NCursesVisualizer(TPPVisualizer):
             for i in range(1, len(pages)):
                 s.move(line, col * 15 + 2)
                 if current_page == i:
-                    s.addstr("%2d %s <=" % (i + 1, pages[i].title[0..80]))
+                    s.addstr("%2d %s <=" % (i + 1, pages[i].title[0:80]))
                 else:
-                    s.addstr("%2d %s" % (i + 1, pages[i].title[0..80]))
+                    s.addstr("%2d %s" % (i + 1, pages[i].title[0:80]))
                 line += 1
                 if line >= self.termheight - 3:
                     line = 2

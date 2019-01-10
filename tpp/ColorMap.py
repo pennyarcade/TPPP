@@ -1,21 +1,22 @@
 """
 Maps color names to constants and indexes.
 """
+import curses
 
 
-class ColorMap(object):
+class ColorMap:
     """
     Maps color names to constants and indexes.
     """
     colors = {
-        "black":   "COLOUR_BLACK",
-        "red":     "COLOUR_RED",
-        "green":   "COLOUR_GREEN",
-        "yellow":  "COLOUR_YELLOW",
-        "blue":    "COLOUR_BLUE",
-        "magenta": "COLOUR_MAGENTA",
-        "cyan":    "COLOUR_CYAN",
-        "white":   "COLOUR_WHITE",
+        "black":   curses.COLOR_BLACK,
+        "red":     curses.COLOR_RED,
+        "green":   curses.COLOR_GREEN,
+        "yellow":  curses.COLOR_YELLOW,
+        "blue":    curses.COLOR_BLUE,
+        "magenta": curses.COLOR_MAGENTA,
+        "cyan":    curses.COLOR_CYAN,
+        "white":   curses.COLOR_WHITE,
         "default": -1
     }
 
@@ -31,20 +32,20 @@ class ColorMap(object):
         "default": -1
     }
 
-    def get_color(self, color):
+    def get_color(color):
         """
         Maps color name _color_ to a constant
 
         :param color:
         :return int:
         """
-        return self.colors[color]
+        return ColorMap.colors[color]
 
-    def get_color_pair(self, color):
+    def get_color_pair(color):
         """
         Maps color name to a color pair index
 
         :param color:
         :return int:
         """
-        return self.color_pairs[color]
+        return ColorMap.color_pairs[color]
