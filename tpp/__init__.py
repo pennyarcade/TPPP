@@ -16,6 +16,3 @@ from tpp.Switch import Switch
 from tpp.TPPRunner import TPPRunner
 
 
-if __name__ == "__main__":
-    RUNNER = TPPRunner()
-    RUNNER.run()
