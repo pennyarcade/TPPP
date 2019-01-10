@@ -29,8 +29,8 @@ class FileParser(object):
         try:
             self.file = open(self.file_name, "r")
         except IOError:
-            print "Could not open source file: " + self.file_name
-            print "Exiting..."
+            print("Could not open source file: " + self.file_name)
+            print("Exiting...")
             quit(1)
 
         cur_page = Page("slide " + str(self.page_number + 1))
