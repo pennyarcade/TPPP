@@ -44,7 +44,6 @@ class NCursesVisualizer(TPPVisualizer):
         self.withborder = False
         self.slideoutput = False
         self.slidedir = "LEFT"
-        self.fgcolor = None
 
     def get_key(self):
         """

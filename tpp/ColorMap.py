@@ -32,20 +32,20 @@ class ColorMap:
         "default": -1
     }
 
-    def get_color(color):
+    def get_color(color: int):
         """
         Maps color name _color_ to a constant
 
-        :param color:
+        :param color: int
         :return int:
         """
         return ColorMap.colors[color]
 
-    def get_color_pair(color):
+    def get_color_pair(color: str):
         """
         Maps color name to a color pair index
 
-        :param color:
+        :param color: str
         :return int:
         """
         return ColorMap.color_pairs[color]

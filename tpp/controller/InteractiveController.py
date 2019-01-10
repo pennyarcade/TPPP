@@ -6,6 +6,7 @@ and executes the appropriate action
 from tpp.FileParser import FileParser
 from tpp.Switch import Switch
 from tpp.controller.TPPController import TPPController
+from tpp.visualizer.TPPVisualizer import TPPVisualizer
 
 
 class InteractiveController(TPPController):
@@ -14,7 +15,7 @@ class InteractiveController(TPPController):
     and executes the appropriate action
     """
 
-    def __init__(self, filename, visualizer_class):
+    def __init__(self, filename: str, visualizer_class: TPPVisualizer):
         """
         Initialize Controller
 
