@@ -5,6 +5,7 @@ Todo: ApiDoc
 """
 import argparse
 import sys
+import curses
 
 from tpp import Switch
 from tpp.controller import AutoplayController, ConversionController, InteractiveController
@@ -27,6 +28,9 @@ class TPPRunner(object):
         self.output = None
         self.type = 'ncurses'
         self.controller = None
+        self.config = None
+
+        print(sys.argv)
 
     def parse_args(self, parser_class=argparse.ArgumentParser):
         """
@@ -37,16 +41,16 @@ class TPPRunner(object):
 
         @see: https://stackoverflow.com/questions/39028204/using-unittest-to-test-argparse-exit-errors
 
-        :param parser_class: set the argument parser class in an optional parameter to be able to switch it out for testing
+        :param parser_class: set the argument parser class in an optional param to be able to switch it out for testing
         :return:
         """
         parser = parser_class('TPPP - Text Presentation Program Python Edition')
 
         parser.add_argument(
-            'input',
+            'file',
             help='TPPP presentation source file',
             metavar='file',
-            type=lambda s: s.strip()
+            type=argparse.FileType('r', errors='replace')
         )
 
         parser.add_argument(
@@ -87,6 +91,9 @@ class TPPRunner(object):
         :return:
         """
         # Todo: Implement
+
+        print(self.config)
+
         pass
 
     def configure(self):
@@ -118,11 +125,18 @@ class TPPRunner(object):
 
         :return:
         """
-        self.parse_args()
-        self.validate_args()
-        self.configure()
-        self.controller.run()
-        self.controller.close()
+        try:
+            self.parse_args()
+            self.validate_args()
+            self.configure()
+            self.controller.run()
+            self.controller.close()
+        except Exception as exc:
+            curses.nocbreak()
+            # stdscr.keypad(False)
+            curses.echo()
+            curses.endwin()
+            raise exc
 
     def load_ncurses(self):
         """

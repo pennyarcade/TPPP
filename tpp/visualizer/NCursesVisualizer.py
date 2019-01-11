@@ -31,9 +31,9 @@ class NCursesVisualizer(TPPVisualizer):
 
         curses.start_color()
         curses.use_default_colors()
+        self.fgcolor = ColorMap.get_color_pair('white')
         self.do_bgcolor('black')
         self.do_fgcolor("white")
-        self.fgcolor = ColorMap.get_color_pair('white')
         self.voffset = 5
         self.indent = 3
         self.cur_line = self.voffset
@@ -587,6 +587,7 @@ class NCursesVisualizer(TPPVisualizer):
         curses.init_pair(6, curses.COLOR_CYAN, bgcolor)
         curses.init_pair(7, curses.COLOR_MAGENTA, bgcolor)
         curses.init_pair(8, curses.COLOR_BLACK, bgcolor)
+        dir(self)
         if self.fgcolor:
             # Todo: how to do this in python curses?
             # curses.bkgd(curses.color_pair(self.fgcolor))
