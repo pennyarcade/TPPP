@@ -1,7 +1,5 @@
-"""
-    Import all module classes to make them available in namespace
+"""Import all module classes to make them available in namespace."""
 
-"""
 from tpp.visualizer.AsciiMaticsVisualizer import AsciiMaticsVisualizer
 from tpp.visualizer.LatexVisualizer import LatexVisualizer
 from tpp.visualizer.NCursesVisualizer import NCursesVisualizer

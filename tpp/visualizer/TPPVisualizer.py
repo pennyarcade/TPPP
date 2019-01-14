@@ -83,7 +83,7 @@ class TPPVisualizer(object):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def do_withborder(self):
+    def do_with_border(self):
         """
         Todo: ApiDoc
 
@@ -92,7 +92,7 @@ class TPPVisualizer(object):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def do_horline(self):
+    def do_hor_line(self):
         """
         Todo: ApiDoc
 
@@ -324,11 +324,11 @@ class TPPVisualizer(object):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def print_line(self, line):
+    def print_line(self, text: str):
         """
         Todo: ApiDoc
 
-        :param line:
+        :param text: str
         :return:
         """
         raise NotImplementedError()
@@ -344,27 +344,27 @@ class TPPVisualizer(object):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def do_author(self, author):
+    def do_author(self, text: str):
         """
         Todo: ApiDoc
 
-        :param author:
+        :param text: str
         :return:
         """
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def do_date(self, date):
+    def do_date(self, text: str):
         """
         Todo: ApiDoc
 
-        :param date:
+        :param text: str
         :return:
         """
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def do_bgcolor(self, color):
+    def do_bg_color(self, color):
         """
         Todo: ApiDoc
 
@@ -374,7 +374,7 @@ class TPPVisualizer(object):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def do_fgcolor(self, color):
+    def do_fg_color(self, color):
         """
         Todo: ApiDoc
 
@@ -407,9 +407,9 @@ class TPPVisualizer(object):
         if line.startswith('--heading'):
             return self.do_heading(line.replace('--heading', '').strip())
         elif line.startswith('--withborder'):
-            return self.do_withborder()
+            return self.do_with_border()
         elif line.startswith('--horline'):
-            return self.do_horline()
+            return self.do_hor_line()
         elif line.startswith('--color'):
             return self.do_color(line.replace('--color', '').strip())
         elif line.startswith('--center'):
@@ -481,9 +481,9 @@ class TPPVisualizer(object):
         elif line.startswith('--date'):
             return self.do_date(line.replace('--date', '').strip())
         elif line.startswith('--bgcolor'):
-            return self.do_bgcolor(line.replace('--bgcolor', '').strip())
+            return self.do_bg_color(line.replace('--bgcolor', '').strip())
         elif line.startswith('--fgcolor'):
-            return self.do_fgcolor(line.replace('--fgcolor', '').strip())
+            return self.do_fg_color(line.replace('--fgcolor', '').strip())
         elif line.startswith('--color'):
             return self.do_color(line.replace('--color', '').strip())
         return self.print_line(line.strip())

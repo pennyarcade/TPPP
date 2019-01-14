@@ -1,11 +1,10 @@
 """
-Implement a visualizer which converts TPP source to a nicely formatted text file which can e.g. be used as handout
+Implement a visualizer which converts TPP source to a nicely formatted text file which can e.g. be used as handout.
 
 Todo: ApiDoc
 """
 
 import os
-import sys
 import textwrap
 
 from tpp.visualizer.TPPVisualizer import TPPVisualizer
@@ -13,28 +12,23 @@ from tpp.visualizer.TPPVisualizer import TPPVisualizer
 
 class TextVisualizer(TPPVisualizer):
     """
-    Implement a visualizer which converts TPP source to a nicely formatted text file which can e.g. be used as handout
+    Implement a visualizer which converts TPP source to a nicely formatted text file which can e.g. be used as handout.
 
     Todo: ApiDoc
     """
+
     def __init__(self, outputfile):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
-        :param outputfile:
+        :param outputfile: file
         """
-        self.filename = outputfile
-        try:
-            self.filehandle = open(self.filename, os.O_WRONLY)
-        except IOError as exc:
-            sys.stderr.write("Error: could not open file for writing: %s" % self.filename)
-            sys.exit(1)
-            # Todo: better error message
+        self.file_handle = outputfile
         self.output_env = False
         self.title = False
         self.author = False
         self.date = False
-        self.figletfont = 'small'
+        self.figlet_font = 'small'
         self.width = 80
 
     def do_footer(self, footer_text):
@@ -69,7 +63,7 @@ class TextVisualizer(TPPVisualizer):
 
         :return:
         """
-        self.filehandle.write('------------------------------------------------------------' + os.linesep)
+        self.file_handle.write('------------------------------------------------------------' + os.linesep)
 
     def do_heading(self, text):
         """
@@ -78,31 +72,31 @@ class TextVisualizer(TPPVisualizer):
         :param text:
         :return:
         """
-        with self.filehandle.write as puts:
-            puts( + os.linesep)
+        with self.file_handle.write as puts:
+            puts(os.linesep)
             for line in textwrap.wrap(text, self.width):
                 puts(line + os.linesep)
             puts('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~' + os.linesep)
 
-    def do_withborder(self):
+    def do_with_border(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
         pass
 
-    def do_horline(self):
+    def do_hor_line(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
-        self.filehandle.write('************************************************************' + os.linesep)
+        self.file_handle.write('************************************************************' + os.linesep)
 
     def do_color(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -111,7 +105,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_exec(self, cmdline):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param cmdline:
         :return:
@@ -120,7 +114,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_wait(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -128,16 +122,16 @@ class TextVisualizer(TPPVisualizer):
 
     def do_begin_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
-        self.filehandle.write('.-------------------------------------')
+        self.file_handle.write('.-------------------------------------')
         self.output_env = True
 
     def do_begin_shell_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -145,16 +139,16 @@ class TextVisualizer(TPPVisualizer):
 
     def do_end_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
-        self.filehandle.write('\'-------------------------------------')
+        self.file_handle.write('\'-------------------------------------')
         self.output_env = False
 
     def do_end_shell_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -162,7 +156,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_sleep(self, seconds):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param seconds:
         :return:
@@ -171,7 +165,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_bold_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -179,21 +173,21 @@ class TextVisualizer(TPPVisualizer):
 
     def do_bold_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
 
     def do_rev_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
 
     def do_command_prompt(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -201,7 +195,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_rev_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -209,7 +203,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_ul_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -217,7 +211,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_ul_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -225,7 +219,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_begin_slide_left(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -233,7 +227,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_end_slide(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -241,7 +235,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_begin_slide_right(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -249,7 +243,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_begin_slide_bottom(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -257,7 +251,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_begin_slide_top(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -265,16 +259,16 @@ class TextVisualizer(TPPVisualizer):
 
     def do_set_huge_font(self, params):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param params:
         :return:
         """
-        self.figletfont = params
+        self.figlet_font = params
 
     def do_huge(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
         Todo: fix code duplication
 
         :param text:
@@ -283,33 +277,33 @@ class TextVisualizer(TPPVisualizer):
         output_width = self.width
         if self.output_env:
             output_width -= 2
-        op = os.popen("figlet -f %s -w %d -k %s" % (self.figletfont, width, text), 'r')
-        for line in op.readlines():
+        output_handle = os.popen("figlet -f %s -w %d -k %s" % (self.figlet_font, output_width, text), 'r')
+        for line in output_handle.readlines():
             self.print_line(line)
-        op.close()
+        output_handle.close()
 
-    def print_line(self, line):
+    def print_line(self, text: str):
         """
-        Todo: ApiDoc
-
-        :param line:
-        :return:
-        """
-        for line in textwrap.wrap(line, self.width):
-            if self.output_env:
-                self.filehandle.write("| %s%s" % (line, os.linesep))
-            else:
-                self.filehandle.write(line + os.linesep)
-
-    def do_center(self, text):
-        """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
         """
-        for line in textwrap.wrap(line, self.width):
-            spaces = (self.width -len(line)) / 2
+        for line in textwrap.wrap(text, self.width):
+            if self.output_env:
+                self.file_handle.write("| %s%s" % (line, os.linesep))
+            else:
+                self.file_handle.write(line + os.linesep)
+
+    def do_center(self, text):
+        """
+        Todo: ApiDoc.
+
+        :param text:
+        :return:
+        """
+        for line in textwrap.wrap(text, self.width):
+            spaces = (self.width - len(line)) / 2
             if spaces < 0:
                 spaces = 0
             self.print_line(' ' * spaces + line)
@@ -321,7 +315,7 @@ class TextVisualizer(TPPVisualizer):
         :param text:
         :return:
         """
-        for line in textwrap.wrap(line, self.width):
+        for line in textwrap.wrap(text, self.width):
             spaces = (self.width - len(line))
             if spaces < 0:
                 spaces = 0
@@ -329,41 +323,41 @@ class TextVisualizer(TPPVisualizer):
 
     def do_title(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
         """
-        self.filehandle.write("Title: %s" % text)
+        self.file_handle.write("Title: %s" % text)
         self.title = True
         if self.title and self.author and self.date:
-            self.filehandle.write(os.linesep * 2)
+            self.file_handle.write(os.linesep * 2)
 
-    def do_author(self, text):
+    def do_author(self, text: str):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
-        :param text:
+        :param text: str
         :return:
         """
-        self.filehandle.write("Author: %s" % text)
+        self.file_handle.write("Author: %s" % text)
         self.author = True
         if self.title and self.author and self.date:
-            self.filehandle.write(os.linesep * 2)
+            self.file_handle.write(os.linesep * 2)
 
-    def do_date(self, text):
+    def do_date(self, text: str):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
-        :param text:
+        :param text: str
         :return:
         """
-        self.filehandle.write("Date: %s" % text)
+        self.file_handle.write("Date: %s" % text)
         self.date = True
         if self.title and self.author and self.date:
-            self.filehandle.write(os.linesep * 2)
+            self.file_handle.write(os.linesep * 2)
 
-    def do_bgcolor(self, color):
+    def do_bg_color(self, color):
         """
         Todo: ApiDoc
 
@@ -372,7 +366,7 @@ class TextVisualizer(TPPVisualizer):
         """
         pass
 
-    def do_fgcolor(self, color):
+    def do_fg_color(self, color):
         """
         Todo: ApiDoc
 
@@ -387,4 +381,4 @@ class TextVisualizer(TPPVisualizer):
 
         :return:
         """
-        self.filehandle.close()
+        self.file_handle.close()

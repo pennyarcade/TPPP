@@ -32,8 +32,8 @@ class NCursesVisualizer(TPPVisualizer):
         curses.start_color()
         curses.use_default_colors()
         self.fgcolor = ColorMap.get_color_pair('white')
-        self.do_bgcolor('black')
-        self.do_fgcolor("white")
+        self.do_bg_color('black')
+        self.do_fg_color("white")
         self.voffset = 5
         self.indent = 3
         self.cur_line = self.voffset
@@ -94,7 +94,7 @@ class NCursesVisualizer(TPPVisualizer):
         """
         self.screen.refresh()
 
-    def do_withborder(self):
+    def do_with_border(self):
         """
         Todo: ApiDoc
 
@@ -215,7 +215,7 @@ class NCursesVisualizer(TPPVisualizer):
         self.print_heading(text)
         self.screen.attroff(curses.A_BOLD)
 
-    def do_horline(self):
+    def do_hor_line(self):
         """
         Todo: ApiDoc
 
@@ -571,7 +571,7 @@ class NCursesVisualizer(TPPVisualizer):
             self.print_line(line)
         op.close()
 
-    def do_bgcolor(self, color):
+    def do_bg_color(self, color):
         """
         Todo: ApiDoc
 
@@ -596,7 +596,7 @@ class NCursesVisualizer(TPPVisualizer):
             # curses.bkgd(curses.color_pair(1))
             pass
 
-    def do_fgcolor(self, color):
+    def do_fg_color(self, color):
         """
         Todo: ApiDoc
 

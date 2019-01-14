@@ -116,7 +116,7 @@ class LatexVisualizer(TPPVisualizer):
         self.try_close()
         self.file_handle.write("\\section{%s}" % text)
 
-    def do_withborder(self):
+    def do_with_border(self):
         """
         Todo: ApiDoc
 
@@ -124,7 +124,7 @@ class LatexVisualizer(TPPVisualizer):
         """
         pass
 
-    def do_horline(self):
+    def do_hor_line(self):
         """
         Todo: ApiDoc
 
@@ -404,7 +404,7 @@ class LatexVisualizer(TPPVisualizer):
         self.file_handle.write("\\date{%s}" % text)
         self.date = True
 
-    def do_bgcolor(self, color):
+    def do_bg_color(self, color):
         """
         Todo: ApiDoc
 
@@ -413,7 +413,7 @@ class LatexVisualizer(TPPVisualizer):
         """
         pass
 
-    def do_fgcolor(self, color):
+    def do_fg_color(self, color):
         """
         Todo: ApiDoc
 
