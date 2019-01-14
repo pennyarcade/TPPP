@@ -1,13 +1,10 @@
-"""
-Maps color names to constants and indexes.
-"""
+"""Map color names to constants and indexes."""
 import curses
 
 
 class ColorMap:
-    """
-    Maps color names to constants and indexes.
-    """
+    """Map color names to constants and indexes."""
+
     colors = {
         "black":   curses.COLOR_BLACK,
         "red":     curses.COLOR_RED,
@@ -32,18 +29,20 @@ class ColorMap:
         "default": -1
     }
 
+    @staticmethod
     def get_color(color: int):
         """
-        Maps color name _color_ to a constant
+        Map color name _color_ to a constant.
 
         :param color: int
         :return int:
         """
         return ColorMap.colors[color]
 
+    @staticmethod
     def get_color_pair(color: str):
         """
-        Maps color name to a color pair index
+        Map color name to a color pair index.
 
         :param color: str
         :return int:
