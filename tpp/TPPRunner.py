@@ -30,8 +30,6 @@ class TPPRunner(object):
         self.controller = None
         self.config = None
 
-        print(sys.argv)
-
     def parse_args(self, parser_class=argparse.ArgumentParser):
         """
         Create argument parser, handle command line parameters, provide command line help.
@@ -47,10 +45,12 @@ class TPPRunner(object):
         parser = parser_class('TPPP - Text Presentation Program Python Edition')
 
         parser.add_argument(
-            'file',
-            help='TPPP presentation source file',
-            metavar='file',
-            type=argparse.FileType('r', errors='replace')
+            'tpp_source_file',
+            metavar='source_file',
+            type=argparse.FileType('r', encoding='UTF-8', errors='replace'),
+            nargs='?',
+            help='TPP presentation source file',
+            default=sys.stdin
         )
 
         parser.add_argument(
@@ -82,7 +82,7 @@ class TPPRunner(object):
             type=int
         )
 
-        self.config = parser.parse_args(self.args)
+        self.config = parser.parse_args(self.args[1:])
 
     def validate_args(self):
         """

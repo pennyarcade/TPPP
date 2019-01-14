@@ -15,19 +15,20 @@ class InteractiveController(TPPController):
     and executes the appropriate action
     """
 
-    def __init__(self, filename: str, visualizer_class: TPPVisualizer):
+    def __init__(self, file, visualizer_class: TPPVisualizer):
         """
         Initialize Controller
 
         Todo: ApiDoc
 
-        :param filename:
+        :param file:
         :param visualizer_class:
         """
-        self.filename = filename
+        self.file = file
         self.vis = visualizer_class()
         self.cur_page = 0
         self.reload_file = False
+        self.pages = None
 
     def close(self):
         """
@@ -45,7 +46,7 @@ class InteractiveController(TPPController):
         """
         while True:
             self.reload_file = False
-            parser = FileParser(self.filename)
+            parser = FileParser(self.file)
             self.pages = parser.get_pages()
             if self.cur_page >= len(self.pages):
                 self.cur_page = len(self.pages) - 1

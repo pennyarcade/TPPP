@@ -9,14 +9,13 @@ class FileParser(object):
     Opens a TPP source file and returns a list of page objects
     """
 
-    def __init__(self, filename):
+    def __init__(self, file):
         """
         Initialize source parser
 
         :param filename:
         """
-        self.file = None
-        self.file_name = filename
+        self.file = file
         self.pages = list()
         self.page_number = 0
 
@@ -26,16 +25,9 @@ class FileParser(object):
 
         :return list:
         """
-        try:
-            self.file = open(self.file_name, "r")
-        except IOError:
-            print("Could not open source file: " + self.file_name)
-            print("Exiting...")
-            quit(1)
-
         cur_page = Page("slide " + str(self.page_number + 1))
 
-        for line in self.file:
+        for line in self:
             line = line.strip()
 
             if line.startswith('--##'):
