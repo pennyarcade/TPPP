@@ -4,7 +4,7 @@ Opens a TPP source file and returns a list of page objects
 from tpp.Page import Page
 
 
-class FileParser(object):
+class FileParser:
     """
     Opens a TPP source file and returns a list of page objects
     """
@@ -13,7 +13,7 @@ class FileParser(object):
         """
         Initialize source parser
 
-        :param filename:
+        :param file: file object
         """
         self.file = file
         self.pages = list()
@@ -27,7 +27,7 @@ class FileParser(object):
         """
         cur_page = Page("slide " + str(self.page_number + 1))
 
-        for line in self:
+        for line in self.file:
             line = line.strip()
 
             if line.startswith('--##'):
