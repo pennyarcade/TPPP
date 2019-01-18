@@ -1,16 +1,12 @@
-"""
-Represents a page (aka 'slide') in TPP. A page consists of a title and one or more lines
-"""
+"""Represents a page (aka 'slide') in TPP. A page consists of a title and one or more lines."""
 
 
-class Page(object):
-    """
-    Represents a page (aka 'slide') in TPP. A page consists of a title and one or more lines
-    """
+class Page:
+    """Represents a page (aka 'slide') in TPP. A page consists of a title and one or more lines."""
 
     def __init__(self, title):
         """
-        Initialize page object and set page title
+        Initialize page object and set page title.
 
         :param title:
         """
@@ -20,15 +16,15 @@ class Page(object):
         self.eop = False
 
     def add_line(self, line):
-        """
-        Add a source line to the page object
-        """
+        """Add a source line to the page object."""
         if line:
             self.lines = line
 
     def next_line(self):
         """
-        Returns the next line. In case the last line is reached, then the end of page marker is set.
+        Return the next line.
+
+        In case the last line is reached, then the end of page marker is set.
 
         TODO: Refactor to use iterator interface?
 
@@ -44,7 +40,7 @@ class Page(object):
 
     def is_eop(self):
         """
-        Returns whether end-of-page has been reached
+        Return whether end-of-page has been reached.
 
         :return boolean: eop
         """
@@ -52,7 +48,7 @@ class Page(object):
 
     def reset_eop(self):
         """
-        Resets the end-of-page marker and sets the current line marker to the first line
+        Reset the end-of-page marker and sets the current line marker to the first line.
 
         :return None:
         """
@@ -61,7 +57,7 @@ class Page(object):
 
     def get_lines(self):
         """
-        Return all lines of the page as a list
+        Return all lines of the page as a list.
 
         :return list: lines
         """
@@ -69,7 +65,7 @@ class Page(object):
 
     def get_title(self):
         """
-        Returns the page's title
+        Return the page's title.
 
         :return string: title
         """

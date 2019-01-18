@@ -1,8 +1,8 @@
 #!/usr/bin/python
 """
-   Text Presentation Program
+Text Presentation Program.
 
-   Python Port from Ruby
+Python Port from Ruby
 """
 from tpp import TPPRunner
 

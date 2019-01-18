@@ -1,5 +1,5 @@
 """
-Set up and run the program
+Set up and run the program.
 
 Todo: ApiDoc
 """
@@ -12,15 +12,16 @@ from tpp.controller import AutoplayController, ConversionController, Interactive
 from tpp.visualizer import NCursesVisualizer, TextVisualizer, LatexVisualizer
 
 
-class TPPRunner(object):
+class TPPRunner:
     """
-    Set up and run the program
+    Set up and run the program.
 
     Todo: ApiDoc
     """
+
     def __init__(self, args=sys.argv):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
         """
         self.version_number = "1.3.1"
         self.args = args
@@ -86,7 +87,7 @@ class TPPRunner(object):
 
     def validate_args(self):
         """
-        validate the commadline arguments; sanity checks
+        Validate the command line arguments and perform sanity checks.
 
         :return:
         """
@@ -98,28 +99,28 @@ class TPPRunner(object):
 
     def configure(self):
         """
-        configure the program for running
+        Configure the program for running.
 
         Todo: make visualizer configurable or auto detect instead of hardcoded
 
-        :return:
+        :return TPPController:
         """
         for case in Switch(self.type):
             if case('autoplay'):
                 self.load_ncurses()
-                self.controller = AutoplayController(self.input, NCursesVisualizer)
+                self.controller = AutoplayController(self.input, NCursesVisualizer())
                 break
             if case('text'):
-                self.controller = ConversionController(self.input, self.output, TextVisualizer)
+                self.controller = ConversionController(self.input, self.output, TextVisualizer())
             if case('latex'):
-                self.controller = ConversionController(self.input, self.output, LatexVisualizer)
+                self.controller = ConversionController(self.input, self.output, LatexVisualizer())
             if case():
                 self.load_ncurses()
-                self.controller = InteractiveController(self.input, NCursesVisualizer)
+                self.controller = InteractiveController(self.input, NCursesVisualizer())
 
     def run(self):
         """
-        run the program
+        Run the program.
 
         Todo: ApiDoc
 
@@ -140,7 +141,7 @@ class TPPRunner(object):
 
     def load_ncurses(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """

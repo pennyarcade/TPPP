@@ -1,5 +1,7 @@
 """
-Implement a visualizer which converts TPP source to a nicely formatted text file which can e.g. be used as handout.
+Implement a visualizer which converts TPP source to a nicely formatted text file.
+
+Which can e.g. be used as handout.
 
 Todo: ApiDoc
 """
@@ -12,7 +14,9 @@ from tpp.visualizer.TPPVisualizer import TPPVisualizer
 
 class TextVisualizer(TPPVisualizer):
     """
-    Implement a visualizer which converts TPP source to a nicely formatted text file which can e.g. be used as handout.
+    Implement a visualizer which converts TPP source to a nicely formatted text file.
+
+    Which can e.g. be used as handout.
 
     Todo: ApiDoc
     """
@@ -33,7 +37,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_footer(self, footer_text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param footer_text:
         :return:
@@ -42,7 +46,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_header(self, header_text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param header_text:
         :return:
@@ -51,7 +55,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_refresh(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -59,7 +63,7 @@ class TextVisualizer(TPPVisualizer):
 
     def new_page(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -67,7 +71,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_heading(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -269,6 +273,7 @@ class TextVisualizer(TPPVisualizer):
     def do_huge(self, text):
         """
         Todo: ApiDoc.
+
         Todo: fix code duplication
 
         :param text:
@@ -310,7 +315,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_right(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -359,7 +364,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_bg_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -368,7 +373,7 @@ class TextVisualizer(TPPVisualizer):
 
     def do_fg_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -377,7 +382,7 @@ class TextVisualizer(TPPVisualizer):
 
     def close(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """

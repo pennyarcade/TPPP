@@ -1,23 +1,27 @@
 """
-Implements an interactive controller wich feeds the visualizer until it is told to stop and then reads a key press
-and executes the appropriate action
+Implements an interactive controller.
+
+It which feeds the visualizer until it is told to stop and then reads a key press
+and executes the appropriate action.
 """
 
-from tpp.FileParser import FileParser
-from tpp.Switch import Switch
-from tpp.controller.TPPController import TPPController
-from tpp.visualizer.TPPVisualizer import TPPVisualizer
+from tpp import FileParser
+from tpp import Switch
+from tpp.controller import TPPController
+from tpp.visualizer import TPPVisualizer
 
 
 class InteractiveController(TPPController):
     """
-    Implements an interactive controller wich feeds the visualizer until it is told to stop and then reads a key press
-    and executes the appropriate action
+    Implements an interactive controller.
+
+    It feeds the visualizer until it is told to stop and then reads a key press
+    and executes the appropriate action.
     """
 
     def __init__(self, file, visualizer_class: TPPVisualizer):
         """
-        Initialize Controller
+        Initialize Controller.
 
         Todo: ApiDoc
 
@@ -25,14 +29,14 @@ class InteractiveController(TPPController):
         :param visualizer_class:
         """
         self.file = file
-        self.vis = visualizer_class()
+        self.vis = visualizer_class
         self.cur_page = 0
         self.reload_file = False
         self.pages = None
 
     def close(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -40,7 +44,7 @@ class InteractiveController(TPPController):
 
     def run(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -58,7 +62,7 @@ class InteractiveController(TPPController):
 
     def do_run(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """

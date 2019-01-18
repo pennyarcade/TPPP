@@ -1,30 +1,26 @@
-"""
-Implements a generic visualizer from which all other visualizers need to be derived.
-"""
-
+"""Implements a generic visualizer from which all other visualizers need to be derived."""
 
 import abc
 import textwrap
 
 
 class TPPVisualizer:
-    """
-    Implements a generic visualizer from which all other visualizers need to be derived.
-    """
+    """Implements a generic visualizer from which all other visualizers need to be derived."""
+
     __metaclass__ = abc.ABCMeta
 
     def __init__(self):
-        """
-        Initialize basic visualizer
-        """
+        """Initialize basic visualizer."""
         self.footer = ''
         self.header = ''
 
     @staticmethod
     def split_lines(text, width=70):
         """
-        Splits a line of text into several lines, where each of the result lines is at most _width_ characters long,
-        caring about word boundaries, and returns an array of strings
+        Splits a line of text into several lines.
+
+        Where each of the result lines is at most _width_ characters long,
+        caring about word boundaries, and returns an array of strings.
 
         Todo: set sensible textwrap parameters? All default for now.
 
@@ -37,7 +33,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_footer(self, footer_text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param footer_text:
         :return:
@@ -47,7 +43,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_header(self, header_text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param header_text:
         :return:
@@ -57,7 +53,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_refresh(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -66,7 +62,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def new_page(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -75,7 +71,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_heading(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -85,7 +81,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_with_border(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -94,7 +90,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_hor_line(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -103,7 +99,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_color(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -113,7 +109,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_center(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -123,7 +119,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_right(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -133,7 +129,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_exec(self, cmdline):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param cmdline:
         :return:
@@ -143,7 +139,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_wait(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -152,7 +148,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_begin_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -161,7 +157,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_begin_shell_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -170,7 +166,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_end_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -179,7 +175,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_end_shell_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -188,7 +184,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_sleep(self, seconds):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param seconds: Time to sleep
         :return:
@@ -198,7 +194,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_bold_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -207,7 +203,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_bold_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -216,7 +212,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_rev_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -225,7 +221,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_rev_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -234,7 +230,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_ul_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -243,7 +239,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_ul_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -252,7 +248,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_begin_slide_left(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -261,7 +257,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_end_slide(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -270,7 +266,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_command_prompt(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -279,7 +275,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_begin_slide_right(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -288,7 +284,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_begin_slide_top(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -297,7 +293,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_begin_slide_bottom(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -306,7 +302,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_set_huge_font(self, params):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param params: list of parameters
         :return:
@@ -316,7 +312,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_huge(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -326,7 +322,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def print_line(self, text: str):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text: str
         :return:
@@ -336,7 +332,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_title(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -346,7 +342,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_author(self, text: str):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text: str
         :return:
@@ -366,7 +362,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_bg_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -376,7 +372,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_fg_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -386,7 +382,7 @@ class TPPVisualizer:
     @abc.abstractmethod
     def do_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -395,8 +391,9 @@ class TPPVisualizer:
 
     def visualize(self, line, eop):
         """
-        Receives a _line_, parses if id necessary, and dispatches it to the correct method which thn does the correct
-        processing. It returns whether the controller shall wait for input
+        Receives a _line_, parses if id necessary, and dispatches it to the correct method.
+
+        Which then does the correct processing. It returns whether the controller shall wait for input.
 
         Todo: Refactor this to use reflection to find the right method
 
@@ -490,7 +487,8 @@ class TPPVisualizer:
 
     def close(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
+
         Todo: Where is this used?
 
         :return None:

@@ -5,11 +5,9 @@ Base controller all other controllers inherit from
 import abc
 
 
-class TPPController(object):
-    """
-    Base controller all other controllers inherit from
+class TPPController:
+    """Base controller all other controllers inherit from."""
 
-    """
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
@@ -19,22 +17,22 @@ class TPPController(object):
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def close(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def run(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
-        raise NotImplemented()
+        raise NotImplementedError()

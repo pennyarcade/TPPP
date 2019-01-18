@@ -1,5 +1,5 @@
 """
-Emulate the look and feel of a "C-style" switch statement
+Emulate the look and feel of a "C-style" switch statement.
 
 Todo: ApiDoc
 
@@ -11,9 +11,9 @@ once, no need to muck around with its internals.
 """
 
 
-class Switch(object):
+class Switch:
     """
-    Emulate the look and feel of a "C-style" switch statement
+    Emulate the look and feel of a "C-style" switch statement.
 
     Todo: ApiDoc
 
@@ -26,7 +26,7 @@ class Switch(object):
 
     def __init__(self, value):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param value:
         """
@@ -34,21 +34,15 @@ class Switch(object):
         self.fall = False
 
     def __iter__(self):
-        """
-        Return the match method once, then stop
-
-        """
+        """Return the match method once, then stop."""
         yield self.match
         raise StopIteration
 
     def match(self, *args):
-        """
-        Indicate whether or not to enter a case suite
-
-        """
+        """Indicate whether or not to enter a case suite."""
         if self.fall or not args:
             return True
-        elif self.value in args:  # changed for v1.5, see below
+        if self.value in args:  # changed for v1.5, see below
             self.fall = True
             return True
         return False

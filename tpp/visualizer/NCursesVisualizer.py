@@ -1,3 +1,5 @@
+"""Implements an interactive visualizer which builds on top of NCurses."""
+
 import curses
 import os
 import random
@@ -10,15 +12,11 @@ from tpp.visualizer.TPPVisualizer import TPPVisualizer
 
 
 class NCursesVisualizer(TPPVisualizer):
-    """
-        Implements an interactive visualizer which builds on top of NCurses
-    """
+    """Implements an interactive visualizer which builds on top of NCurses."""
 
     def __init__(self):
-        """
-        Todo: ApiDoc
-        """
-        self.figletfont = "standard"
+        """Todo: ApiDoc."""
+        self.figlet_font = "standard"
 
         self.screen = curses.initscr()
         curses.curs_set(0)
@@ -47,7 +45,9 @@ class NCursesVisualizer(TPPVisualizer):
 
     def get_key(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
+
+        Todo: Use switch class.
 
         :return string: Character or special key reference
         """
@@ -55,20 +55,20 @@ class NCursesVisualizer(TPPVisualizer):
 
         if ch == curses.KEY_RIGHT:
             return ':keyright'
-        elif ch == curses.KEY_DOWN:
+        if ch == curses.KEY_DOWN:
             return ':keydown'
-        elif ch == curses.KEY_LEFT:
+        if ch == curses.KEY_LEFT:
             return ':keyleft'
-        elif ch == curses.KEY_UP:
+        if ch == curses.KEY_UP:
             return ':keyup'
-        elif ch == curses.KEY_RESIZE:
+        if ch == curses.KEY_RESIZE:
             return ':keyresize'
 
         return ch
 
     def clear(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -77,8 +77,9 @@ class NCursesVisualizer(TPPVisualizer):
 
     def setsizes(self):
         """
-        Todo: ApiDoc
-        Todo: How to do this with python curses
+        Todo: ApiDoc.
+
+        Todo: How to do this with python curses.
 
         :return:
         """
@@ -88,7 +89,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_refresh(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return: None
         """
@@ -96,16 +97,16 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_with_border(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return: None
         """
         self.withborder = True
-        draw_border()
+        # draw_border() # FIXME
 
     def do_command_prompt(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return: None
         """
@@ -130,7 +131,7 @@ class NCursesVisualizer(TPPVisualizer):
         while True:
             # window.mvaddstr(self.termheight/4, 1 + len(prompt), string) # add the code
             # window.move(self.termheight/4, 1 + len(prompt) + cursor_pos) # move cursor to the end of the code
-            ch = window.getch()
+            # ch = window.getch()
 
             if ch in [curses.KEY_ENTER, "\n", "\r"]:
                 curses.curs_set(0)
@@ -148,7 +149,7 @@ class NCursesVisualizer(TPPVisualizer):
                         self.termheight - 2, self.termwidth / 2 - len(message) / 2, message
                     )
                     ch = self.screen.getch()
-                    self.screen.refresh
+                    self.screen.refresh()
                     return
             elif ch == curses.KEY_LEFT:
                 curser_pos = max(0, curser_pos - 1)  # jump one character to the left
@@ -158,9 +159,9 @@ class NCursesVisualizer(TPPVisualizer):
                 # Todo: check range expressions
                 string = string[0, max(0, curser_pos - 1)] + string[curser_pos, -1]
                 curser_pos = max(0, curser_pos - 1)
-                window.mvaddstr(
-                    self.termheight / 4, 1 + len(prompt) + len(string), " "
-                )
+                # window.mvaddstr(
+                #     self.termheight / 4, 1 + len(prompt) + len(string), " "
+                # )
             # Todo: How does this expression work in python?
             elif " ": #[0]..255:
                 if curser_pos < max_len:
@@ -175,12 +176,12 @@ class NCursesVisualizer(TPPVisualizer):
 
     def draw_border(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return: None
         """
         with self.screen as s:
-            s.move(0,0)
+            s.move(0, 0)
 
             s.addstr('.')
             s.addstr((self.termwidth - 2) * '-')
@@ -194,7 +195,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def new_page(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return: None
         """
@@ -206,7 +207,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_heading(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -217,7 +218,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_hor_line(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -229,7 +230,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def print_heading(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param width:
         :return:
@@ -245,7 +246,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_center(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -267,7 +268,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_right(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -315,7 +316,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_exec(self, cmdline):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param cmdline:
         :return:
@@ -327,7 +328,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_wait(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -336,7 +337,8 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_begin_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
+
         Todo: Refactor with do_begin_shell_output
 
         :return:
@@ -350,7 +352,8 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_begin_shell_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
+
         Todo: Refactor with do_begin_output
 
         :return:
@@ -364,7 +367,8 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_end_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
+
         Todo: Refactor with do_end_shell_output()
 
         :return:
@@ -380,7 +384,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_title(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -392,7 +396,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_footer(self, footer_text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param footer_text:
         :return:
@@ -402,7 +406,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_header(self, header_text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param header_text:
         :return:
@@ -410,29 +414,30 @@ class NCursesVisualizer(TPPVisualizer):
         self.screen.move(1, (self.termwidth - len(header_text) / 2))
         self.screen.addstr(header_text)
 
-    def do_author(self, author):
+    def do_author(self, text: str):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
-        :param author:
+        :param text:
         :return:
         """
-        self.do_center(author)
+        self.do_center(text)
         self.do_center('')
 
-    def do_date(self, date):
+    def do_date(self, text: str):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
-        :param date:
+        :param text:
         :return:
         """
-        self.do_center(date)
+        self.do_center(text)
         self.do_center('')
 
     def do_end_shell_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
+
         Todo: Refactor with do_end_output()
 
         :return:
@@ -448,7 +453,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_sleep(self, seconds):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param seconds:
         :return:
@@ -457,7 +462,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_bold_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -465,7 +470,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_bold_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -473,7 +478,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_rev_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -481,7 +486,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_rev_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -489,7 +494,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_ul_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -497,7 +502,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_ul_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -505,7 +510,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_begin_slide_left(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -514,7 +519,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_end_slide(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -522,7 +527,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_begin_slide_right(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -531,7 +536,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_begin_slide_top(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -540,7 +545,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_begin_slide_bottom(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -549,16 +554,16 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_set_huge_font(self, params):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param params:
         :return:
         """
-        self.figletfont = params
+        self.figlet_font = params
 
     def do_huge(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -566,14 +571,14 @@ class NCursesVisualizer(TPPVisualizer):
         width = self.termwidth - self.indent
         if self.output or self.shelloutput:
             width -= 2
-        op = os.popen("figlet -f %s -w %d -k %s" % (self.figletfont, width, text), 'r')
+        op = os.popen("figlet -f %s -w %d -k %s" % (self.figlet_font, width, text), 'r')
         for line in op.readlines():
             self.print_line(line)
         op.close()
 
     def do_bg_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -598,7 +603,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_fg_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -608,7 +613,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def do_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -618,7 +623,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def type_line(self, line):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param line:
         :return:
@@ -631,7 +636,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def slide_text(self, line):
         """
-        Todo ApiDoc
+        Todo ApiDoc.
 
         :param line:
         :return:
@@ -679,7 +684,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def print_line(self, line):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param line:
         :return:
@@ -706,7 +711,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def close(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -715,7 +720,8 @@ class NCursesVisualizer(TPPVisualizer):
 
     def read_newpage(self, pages, current_page):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
+
         Todo: Is the second param ommittable?
 
         :param pages:
@@ -754,7 +760,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def store_screen(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -762,7 +768,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def restore_screen(self, s):
         """
-        Todo ApiDoc
+        Todo ApiDoc.
 
         :param s:
         :return:
@@ -771,7 +777,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def draw_slidenum(self, cur_page, max_pages, eop):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param cur_page:
         :param max_pages:
@@ -790,7 +796,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def draw_eop_marker(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """

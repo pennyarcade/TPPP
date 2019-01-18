@@ -1,17 +1,13 @@
-"""
-Opens a TPP source file and returns a list of page objects
-"""
+"""Open a TPP source file and returns a list of page objects"""
 from tpp.Page import Page
 
 
 class FileParser:
-    """
-    Opens a TPP source file and returns a list of page objects
-    """
+    """Open a TPP source file and returns a list of page objects."""
 
     def __init__(self, file):
         """
-        Initialize source parser
+        Initialize source parser.
 
         :param file: file object
         """
@@ -21,7 +17,7 @@ class FileParser:
 
     def get_pages(self):
         """
-        Parses the specified file ane returns a list of page objects
+        Parse the specified file ane returns a list of page objects.
 
         :return list:
         """
@@ -45,3 +41,5 @@ class FileParser:
                 cur_page.add_line(line)
 
         self.pages.append(cur_page)
+
+        return self.pages

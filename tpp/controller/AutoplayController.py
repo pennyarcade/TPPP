@@ -1,22 +1,26 @@
 """
-Implements a non interactive controller for terminal. Useful for displaying unattended presentations
+Implements a non interactive controller for terminal.
 
+Useful for displaying unattended presentations.
 """
+
 from time import sleep
 
-from tpp.FileParser import FileParser
-from tpp.controller.TPPController import TPPController
+from tpp import FileParser
+from tpp.controller import TPPController
+from tpp.visualizer import TPPVisualizer
 
 
 class AutoplayController(TPPController):
     """
-    Implements a non interactive controller for terminal. Useful for displaying unattended presentations
+    Implements a non interactive controller for terminal.
 
+    Useful for displaying unattended presentations.
     """
 
-    def __init__(self, filename, secs, visualizer_class):
+    def __init__(self, filename, secs, visualizer_class: TPPVisualizer):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param filename:
         :param secs:
@@ -24,7 +28,7 @@ class AutoplayController(TPPController):
         """
         self.filename = filename
         # Todo: Check how to do this reflection thing correctly
-        self.vis = visualizer_class()
+        self.vis = visualizer_class
         self.seconds = secs
         self.cur_page = 0
         self.reload_file = False
@@ -32,7 +36,7 @@ class AutoplayController(TPPController):
 
     def close(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -40,9 +44,9 @@ class AutoplayController(TPPController):
 
     def run(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
-        :return:
+        :return: None
         """
         while True:
             self.reload_file = False
@@ -58,7 +62,7 @@ class AutoplayController(TPPController):
 
     def do_run(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """

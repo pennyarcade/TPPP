@@ -1,5 +1,6 @@
 """
-Implements a visualizer which converts TPP source to LaTeX-Beamer source
+Implements a visualizer which converts TPP source to LaTeX-Beamer source.
+
 @see http://latex-beamer.sf.net
 """
 
@@ -13,10 +14,12 @@ from tpp.visualizer.TPPVisualizer import TPPVisualizer
 
 class LatexVisualizer(TPPVisualizer):
     """
-    Implements a visualizer which converts TPP source to LaTeX-Beamer source
+    Implements a visualizer which converts TPP source to LaTeX-Beamer source.
+
     @see http://latex-beamer.sf.net
     Todo: convert this one later
     """
+
     def __init__(self, output_file):
         """
         Todo: ApiDoc
@@ -36,7 +39,7 @@ class LatexVisualizer(TPPVisualizer):
         self.title, self.date, self.author = False
         self.begin_doc = False
         self.file_handle.writelines([
-            "% Filename:     %s" % os.path.basename(self.filename),
+            "%% Filename:     %s" % os.path.basename(self.filename),
             "% Purpose:      TPPP Latex export",
             "% Author:       ",
             "% License:      ",
@@ -61,7 +64,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_footer(self, footer_text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param footer_text:
         :return:
@@ -70,7 +73,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_header(self, header_text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param header_text:
         :return:
@@ -79,7 +82,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_refresh(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -87,20 +90,20 @@ class LatexVisualizer(TPPVisualizer):
 
     def try_close(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
         if self.verbatim_open:
-            self.file_handle.write("\end{verbatim}" + os.linesep)
+            self.file_handle.write("\\end{verbatim}" + os.linesep)
             self.verbatim_open = False
         if self.slide_open:
-            self.file_handle.write("\end{frame}" + os.linesep)
+            self.file_handle.write("\\end{frame}" + os.linesep)
             self.slide_open = False
 
     def new_page(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -108,7 +111,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_heading(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -118,7 +121,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_with_border(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -126,7 +129,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_hor_line(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -134,7 +137,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_color(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -143,7 +146,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_exec(self, cmdline):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param cmdline:
         :return:
@@ -152,7 +155,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_wait(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -160,7 +163,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_begin_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -169,7 +172,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_begin_shell_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -177,7 +180,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_end_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -185,7 +188,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_end_shell_output(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -193,7 +196,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_sleep(self, seconds):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param seconds:
         :return:
@@ -202,7 +205,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_bold_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -210,21 +213,21 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_bold_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
 
     def do_rev_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
 
     def do_command_prompt(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -232,7 +235,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_rev_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -240,7 +243,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_ul_on(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -248,7 +251,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_ul_off(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -256,7 +259,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_begin_slide_left(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -264,7 +267,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_end_slide(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -272,7 +275,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_begin_slide_right(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -280,7 +283,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_begin_slide_bottom(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -288,7 +291,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_begin_slide_top(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -296,7 +299,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_set_huge_font(self, params):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param params:
         :return:
@@ -305,7 +308,8 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_huge(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
+
         Todo: fix code duplication
 
         :param text:
@@ -315,7 +319,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def try_open(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -331,7 +335,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def try_intro(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
@@ -345,20 +349,20 @@ class LatexVisualizer(TPPVisualizer):
                 "\\end{frame}"
             ])
 
-    def print_line(self, line):
+    def print_line(self, text: str):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param line:
         :return:
         """
         self.try_open()
-        for line in textwrap.wrap(line, self.width):
-            self.file_handle.write(line + os.linesep)
+        for line in textwrap.wrap(text, self.width):
+            self.file_handle.write(text + os.linesep)
 
     def do_center(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -367,7 +371,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_right(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -376,7 +380,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_title(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -386,7 +390,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_author(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -396,7 +400,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_date(self, text):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param text:
         :return:
@@ -406,7 +410,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_bg_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -415,7 +419,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def do_fg_color(self, color):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param color:
         :return:
@@ -424,7 +428,7 @@ class LatexVisualizer(TPPVisualizer):
 
     def close(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """
