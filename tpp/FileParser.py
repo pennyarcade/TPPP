@@ -1,6 +1,8 @@
 """Open a TPP source file and returns a list of page objects"""
 from tpp.Page import Page
 
+import sys
+
 
 class FileParser:
     """Open a TPP source file and returns a list of page objects."""
@@ -23,6 +25,9 @@ class FileParser:
         """
         cur_page = Page("slide " + str(self.page_number + 1))
 
+        print(self.file)
+        sys.exit(1)
+
         for line in self.file:
             line = line.strip()
 
@@ -41,5 +46,4 @@ class FileParser:
                 cur_page.add_line(line)
 
         self.pages.append(cur_page)
-
         return self.pages

@@ -6,10 +6,9 @@ Todo: ApiDoc
 import argparse
 import sys
 import curses
+from pydoc import locate
 
 from tpp import Switch
-from tpp.controller import AutoplayController, ConversionController, InteractiveController
-from tpp.visualizer import NCursesVisualizer, TextVisualizer, LatexVisualizer
 
 
 class TPPRunner:
@@ -25,13 +24,14 @@ class TPPRunner:
         """
         self.version_number = "1.3.1"
         self.args = args
-        self.input = None
-        self.output = None
+        self.input_stream = None
+        self.output_stream = None
         self.type = 'ncurses'
         self.controller = None
         self.config = None
+        self.parser = self.get_parser()
 
-    def parse_args(self, parser_class=argparse.ArgumentParser):
+    def get_parser(self, parser_class=argparse.ArgumentParser):
         """
         Create argument parser, handle command line parameters, provide command line help.
 
@@ -43,7 +43,7 @@ class TPPRunner:
         :param parser_class: set the argument parser class in an optional param to be able to switch it out for testing
         :return:
         """
-        parser = parser_class('TPPP - Text Presentation Program Python Edition')
+        parser = parser_class(prog='tppp', description='TPPP - Text Presentation Program Python Edition')
 
         parser.add_argument(
             'tpp_source_file',
@@ -51,7 +51,7 @@ class TPPRunner:
             type=argparse.FileType('r', encoding='UTF-8', errors='replace'),
             nargs='?',
             help='TPP presentation source file',
-            default=sys.stdin
+            default=None
         )
 
         parser.add_argument(
@@ -83,7 +83,7 @@ class TPPRunner:
             type=int
         )
 
-        self.config = parser.parse_args(self.args[1:])
+        return parser
 
     def validate_args(self):
         """
@@ -91,32 +91,48 @@ class TPPRunner:
 
         :return:
         """
-        # Todo: Implement
+        if self.config.version:
+            print('TPPP Version %s' % self.version_number)
+            print()
+            self.parser.print_usage()
+            sys.exit(0)
+
+        if self.config.tpp_source_file is None:
+            self.parser.error('the following arguments are required: source_file')
 
         print(self.config)
-
-        pass
+        sys.exit(1)
 
     def configure(self):
         """
         Configure the program for running.
 
         Todo: make visualizer configurable or auto detect instead of hardcoded
+        Todo: unify controller interface to extract class instanciation
 
         :return TPPController:
         """
         for case in Switch(self.type):
             if case('autoplay'):
-                self.load_ncurses()
-                self.controller = AutoplayController(self.input, NCursesVisualizer())
+                controller_class = locate('tpp.controller.AutoplayController')
+                visualizer_class = locate('tpp.visualizer.NCursesVisualizer')
+                self.controller = controller_class(self.input_stream, visualizer_class())
                 break
             if case('text'):
-                self.controller = ConversionController(self.input, self.output, TextVisualizer())
+                controller_class = locate('tpp.controller.ConversionController')
+                visualizer_class = locate('tpp.visualizer.TextVisualizer')
+                self.controller = controller_class(self.input_stream, self.output_stream, visualizer_class())
+                break
             if case('latex'):
-                self.controller = ConversionController(self.input, self.output, LatexVisualizer())
+                controller_class = locate('tpp.controller.ConversionController')
+                visualizer_class = locate('tpp.visualizer.LatexVisualizer')
+                self.controller = controller_class(self.input_stream, self.output_stream, visualizer_class())
+                break
             if case():
-                self.load_ncurses()
-                self.controller = InteractiveController(self.input, NCursesVisualizer())
+                controller_class = locate('tpp.controller.InteractiveController')
+                visualizer_class = locate('tpp.visualizer.NCursesVisualizer')
+                self.controller = controller_class(self.input_stream, self.output_stream, visualizer_class())
+                break
 
     def run(self):
         """
@@ -127,7 +143,7 @@ class TPPRunner:
         :return:
         """
         try:
-            self.parse_args()
+            self.config = self.parser.parse_args()
             self.validate_args()
             self.configure()
             self.controller.run()
@@ -139,10 +155,3 @@ class TPPRunner:
             curses.endwin()
             raise exc
 
-    def load_ncurses(self):
-        """
-        Todo: ApiDoc.
-
-        :return:
-        """
-        pass

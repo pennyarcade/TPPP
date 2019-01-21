@@ -7,8 +7,8 @@ Useful for displaying unattended presentations.
 from time import sleep
 
 from tpp import FileParser
-from tpp.controller import TPPController
-from tpp.visualizer import TPPVisualizer
+from tpp.controller.TPPController import TPPController
+from tpp.visualizer.TPPVisualizer import TPPVisualizer
 
 
 class AutoplayController(TPPController):

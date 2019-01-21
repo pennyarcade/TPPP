@@ -5,10 +5,10 @@ It which feeds the visualizer until it is told to stop and then reads a key pres
 and executes the appropriate action.
 """
 
-from tpp import FileParser
-from tpp import Switch
-from tpp.controller import TPPController
-from tpp.visualizer import TPPVisualizer
+from tpp.FileParser import FileParser
+from tpp.Switch import Switch
+from tpp.controller.TPPController import TPPController
+from tpp.visualizer.TPPVisualizer import TPPVisualizer
 
 
 class InteractiveController(TPPController):
@@ -19,16 +19,18 @@ class InteractiveController(TPPController):
     and executes the appropriate action.
     """
 
-    def __init__(self, file, visualizer_class: TPPVisualizer):
+    def __init__(self, input_stream, output_stream, visualizer_class: TPPVisualizer):
         """
         Initialize Controller.
 
         Todo: ApiDoc
 
-        :param file:
+        :param input_stream:
+        :param output_stream:
         :param visualizer_class:
         """
-        self.file = file
+        self.file = input_stream
+        print(self.file)
         self.vis = visualizer_class
         self.cur_page = 0
         self.reload_file = False
