@@ -24,7 +24,10 @@ def main():
 
     processed = ""
 
-    for line in output.split(os.linesep):
+    # from pprint import pprint
+    # pprint(output.decode().split(os.linesep))
+
+    for line in output.decode().split(os.linesep):
         line_number += 1
 
         if line.startswith('Check'):
