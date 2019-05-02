@@ -1,7 +1,7 @@
-"""Open a TPP source file and returns a list of page objects"""
-from tpp.Page import Page
-
+"""Open a TPP source file and returns a list of page objects."""
 import sys
+
+from tpp.Page import Page
 
 
 class FileParser:

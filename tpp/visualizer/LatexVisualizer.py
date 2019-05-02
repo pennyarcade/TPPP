@@ -22,13 +22,13 @@ class LatexVisualizer(TPPVisualizer):
 
     def __init__(self, output_file):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :param output_file:
         """
         self.filename = output_file
         try:
-            self.file_handle = open(self.filename, os.O_WRONLY)
+            self.file_handle = open(self.filename, os.O_CREAT)
         except IOError:
             sys.stderr.write("Error: Could not open file %s%s" % (self.filename, os.linesep))
             sys.exit(1)
@@ -36,7 +36,9 @@ class LatexVisualizer(TPPVisualizer):
         self.slide_open = False
         self.verbatim_open = False
         self.width = 50
-        self.title, self.date, self.author = False
+        self.title = False
+        self.date = False
+        self.author = False
         self.begin_doc = False
         self.file_handle.writelines([
             "%% Filename:     %s" % os.path.basename(self.filename),
@@ -358,7 +360,7 @@ class LatexVisualizer(TPPVisualizer):
         """
         self.try_open()
         for line in textwrap.wrap(text, self.width):
-            self.file_handle.write(text + os.linesep)
+            self.file_handle.write(line + os.linesep)
 
     def do_center(self, text):
         """

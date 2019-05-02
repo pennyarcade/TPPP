@@ -16,7 +16,7 @@ class ConversionController(TPPController):
 
     def __init__(self, input_file, output, visualizer_class):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :rtype:
         :param input:

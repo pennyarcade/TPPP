@@ -51,20 +51,20 @@ class NCursesVisualizer(TPPVisualizer):
 
         :return string: Character or special key reference
         """
-        ch = self.screen.getch()
+        char = self.screen.getch()
 
-        if ch == curses.KEY_RIGHT:
+        if char == curses.KEY_RIGHT:
             return ':keyright'
-        if ch == curses.KEY_DOWN:
+        if char == curses.KEY_DOWN:
             return ':keydown'
-        if ch == curses.KEY_LEFT:
+        if char == curses.KEY_LEFT:
             return ':keyleft'
-        if ch == curses.KEY_UP:
+        if char == curses.KEY_UP:
             return ':keyup'
-        if ch == curses.KEY_RESIZE:
+        if char == curses.KEY_RESIZE:
             return ':keyresize'
 
-        return ch
+        return char
 
     def clear(self):
         """
@@ -111,7 +111,7 @@ class NCursesVisualizer(TPPVisualizer):
         :return: None
         """
         message = "Press any key to continue..."
-        curser_pos = 0
+        cursor_pos = 0
         max_len = 50
         prompt = "tpp@localhost:~ $ "
         string = ""
@@ -131,15 +131,15 @@ class NCursesVisualizer(TPPVisualizer):
         while True:
             # window.mvaddstr(self.termheight/4, 1 + len(prompt), string) # add the code
             # window.move(self.termheight/4, 1 + len(prompt) + cursor_pos) # move cursor to the end of the code
-            # ch = window.getch()
+            char = None #window.getch()
 
-            if ch in [curses.KEY_ENTER, "\n", "\r"]:
+            if char in [curses.KEY_ENTER, "\n", "\r"]:
                 curses.curs_set(0)
                 curses.noecho()
-                rc = os.system(string)
-                if not rc:
+                return_code = os.system(string)
+                if not return_code:
                     self.screen.mvaddstr(
-                        self.termheight / 4, 1, "Error: Exec \"%s\" failed with error code #%s" % (string, rc)
+                        self.termheight / 4, 1, "Error: Exec \"%s\" failed with error code #%s" % (string, return_code)
                     )
                     self.screen.mvaddstr(
                         self.termheight - 2, self.termwidth / 2 - len(message) / 2, message
@@ -148,25 +148,25 @@ class NCursesVisualizer(TPPVisualizer):
                     self.screen.mvaddstr(
                         self.termheight - 2, self.termwidth / 2 - len(message) / 2, message
                     )
-                    ch = self.screen.getch()
+                    char = self.screen.getch()
                     self.screen.refresh()
                     return
-            elif ch == curses.KEY_LEFT:
-                curser_pos = max(0, curser_pos - 1)  # jump one character to the left
-            elif ch == curses.KEY_RIGHT:
-                curser_pos = max(0, curser_pos + 1)  # jump one character to the left
-            elif ch == curses.KEY_BACKSPACE:
+            elif char == curses.KEY_LEFT:
+                cursor_pos = max(0, cursor_pos - 1)  # jump one character to the left
+            elif char == curses.KEY_RIGHT:
+                cursor_pos = max(0, cursor_pos + 1)  # jump one character to the left
+            elif char == curses.KEY_BACKSPACE:
                 # Todo: check range expressions
-                string = string[0, max(0, curser_pos - 1)] + string[curser_pos, -1]
-                curser_pos = max(0, curser_pos - 1)
+                string = string[0: max(0, cursor_pos - 1)] + string[cursor_pos: -1]
+                cursor_pos = max(0, cursor_pos - 1)
                 # window.mvaddstr(
                 #     self.termheight / 4, 1 + len(prompt) + len(string), " "
                 # )
             # Todo: How does this expression work in python?
-            elif " ": #[0]..255:
-                if curser_pos < max_len:
-                    string[curser_pos, 0] = chr(ch)
-                    curser_pos += 1
+            elif char == " ": #[0]..255:
+                if cursor_pos < max_len:
+                    string[cursor_pos: 0] = chr(char)
+                    cursor_pos += 1
                 else:
                     curses.beep()
             else:

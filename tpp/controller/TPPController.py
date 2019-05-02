@@ -1,7 +1,4 @@
-"""
-Base controller all other controllers inherit from
-
-"""
+"""Base controller all other controllers inherit from."""
 import abc
 
 
@@ -13,7 +10,7 @@ class TPPController:
     @abc.abstractmethod
     def __init__(self):
         """
-        Todo: ApiDoc
+        Todo: ApiDoc.
 
         :return:
         """

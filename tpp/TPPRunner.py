@@ -18,20 +18,21 @@ class TPPRunner:
     Todo: ApiDoc
     """
 
-    def __init__(self, args=sys.argv):
-        """
-        Todo: ApiDoc.
-        """
+    def __init__(self, args=None):
+        """Todo: ApiDoc."""
         self.version_number = "1.3.1"
-        self.args = args
+        if args is None:
+            self.args = sys.argv
+        else:
+            self.args = args
         self.input_stream = None
         self.output_stream = None
         self.type = 'ncurses'
         self.controller = None
         self.config = None
-        self.parser = self.get_parser()
+        self.configure_parser()
 
-    def get_parser(self, parser_class=argparse.ArgumentParser):
+    def configure_parser(self, parser_class=argparse.ArgumentParser):
         """
         Create argument parser, handle command line parameters, provide command line help.
 
@@ -43,9 +44,9 @@ class TPPRunner:
         :param parser_class: set the argument parser class in an optional param to be able to switch it out for testing
         :return:
         """
-        parser = parser_class(prog='tppp', description='TPPP - Text Presentation Program Python Edition')
+        self.parser = parser_class(prog='tppp', description='TPPP - Text Presentation Program Python Edition')
 
-        parser.add_argument(
+        self.parser.add_argument(
             'tpp_source_file',
             metavar='source_file',
             type=argparse.FileType('r', encoding='UTF-8', errors='replace'),
@@ -54,14 +55,14 @@ class TPPRunner:
             default=None
         )
 
-        parser.add_argument(
+        self.parser.add_argument(
             '-v',
             '--version',
             help='Print version and exit',
             action='store_true'
         )
 
-        parser.add_argument(
+        self.parser.add_argument(
             '-t',
             '--type',
             help='set file type for output format',
@@ -69,21 +70,19 @@ class TPPRunner:
             type=lambda s: s.strip().lower()
         )
 
-        parser.add_argument(
+        self.parser.add_argument(
             '-o',
             '--output',
             help='set file to write output to',
             type=lambda s: s.strip()
         )
 
-        parser.add_argument(
+        self.parser.add_argument(
             '-s',
             '--seconds',
             help='wait <seconds> between slides (with -t autoplay)',
             type=int
         )
-
-        return parser
 
     def validate_args(self):
         """
@@ -154,4 +153,3 @@ class TPPRunner:
             curses.echo()
             curses.endwin()
             raise exc
-
