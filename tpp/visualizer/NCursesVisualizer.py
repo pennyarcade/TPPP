@@ -16,6 +16,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def __init__(self):
         """Todo: ApiDoc."""
+        super(NCursesVisualizer, self)
         self.figlet_font = "standard"
 
         self.screen = curses.initscr()

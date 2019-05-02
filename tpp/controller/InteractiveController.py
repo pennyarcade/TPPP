@@ -29,6 +29,7 @@ class InteractiveController(TPPController):
         :param output_stream:
         :param visualizer_class:
         """
+        super(InteractiveController, self).__init__()
         self.file = input_stream
         print(self.file)
         self.vis = visualizer_class
@@ -93,8 +94,9 @@ class InteractiveController(TPPController):
                     if case('q', 'Q'):  # (Q)uit
                         return
                     if case('r', 'R'):  # (R)edraw slide
-                        changed_page = True
-                        # @Todo: actuaklly implement redraw
+                        # changed_page = True
+                        # @Todo: actually implement redraw
+                        break
                     if case('e', 'E'):
                         self.cur_page = len(self.pages) - 1
                         break

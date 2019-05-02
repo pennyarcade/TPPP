@@ -26,9 +26,11 @@ class LatexVisualizer(TPPVisualizer):
 
         :param output_file:
         """
+        super(LatexVisualizer, self).__init__()
+
         self.filename = output_file
         try:
-            self.file_handle = open(self.filename, os.O_CREAT)
+            self.file_handle = open(self.filename, 'w')
         except IOError:
             sys.stderr.write("Error: Could not open file %s%s" % (self.filename, os.linesep))
             sys.exit(1)
