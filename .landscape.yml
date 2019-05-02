@@ -1,5 +1,3 @@
-# Sadly the online version still seem to be pretty unstable.
-# So only the command line version of prospector works reliably right now.
 autodetect: yes
 strictness: veryhigh
 test-warnings: false
@@ -7,10 +5,10 @@ doc-warnings: true
 
 ignore-paths:
   - .git
+  - coverage
   - docs
-  - inbox
+  - lib
   - metrics
-  - logs
 
 ignore-patterns:
    - (^|/)skip(this)?(/|$)
@@ -23,18 +21,17 @@ pep8:
   enable:
     - W601
   options:
-    max-line-length: 120
+    max-line-length: 99
     single-line-if-stmt: n
 
 pylint:
   run: true
   options:
-    max-line-length: 120
+    max-line-length: 99
 
 pep257:
   disable:
     - D203
-    - D212 # Multi-line docstring summary should start at the first line - This conflicts Rule D213
   run: true
 
 pyroma:
@@ -49,11 +46,8 @@ dodgy:
   run: false
 
 pyflakes:
-  run: false
+  run: true
 
 frosted:
-  run: false
-
-
-
+  run: true
 
