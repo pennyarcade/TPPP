@@ -29,6 +29,9 @@ class InteractiveController(TPPController):
         :param output_stream:
         :param visualizer_class:
         """
+        from pprint import pprint
+        pprint('__init__')
+        sys.exit(1)
         super(InteractiveController, self).__init__()
         self.file = input_stream
         print(self.file)
@@ -57,7 +60,7 @@ class InteractiveController(TPPController):
             self.pages = parser.get_pages()
             if self.cur_page >= len(self.pages):
                 self.cur_page = len(self.pages) - 1
-            self.vis.clear
+            self.vis.clear()
             self.vis.new_page()
             self.do_run()
             if not self.reload_file:

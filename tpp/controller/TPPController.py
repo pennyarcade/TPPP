@@ -14,7 +14,8 @@ class TPPController:
 
         :return:
         """
-        raise NotImplementedError()
+        # raise NotImplementedError()
+        pass
 
     @abc.abstractmethod
     def close(self):

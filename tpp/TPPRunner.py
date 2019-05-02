@@ -27,9 +27,9 @@ class TPPRunner:
             self.args = args
         self.input_stream = None
         self.output_stream = None
-        self.type = 'ncurses'
         self.controller = None
         self.config = None
+        self.parser = None
         self.configure_parser()
 
     def configure_parser(self, parser_class=argparse.ArgumentParser):
@@ -66,7 +66,7 @@ class TPPRunner:
             '-t',
             '--type',
             help='set file type for output format',
-            choices=[],
+            choices=['latex', 'autoplay', 'text'],
             type=lambda s: s.strip().lower()
         )
 
@@ -99,9 +99,6 @@ class TPPRunner:
         if self.config.tpp_source_file is None:
             self.parser.error('the following arguments are required: source_file')
 
-        print(self.config)
-        sys.exit(1)
-
     def configure(self):
         """
         Configure the program for running.
@@ -111,7 +108,7 @@ class TPPRunner:
 
         :return TPPController:
         """
-        for case in Switch(self.type):
+        for case in Switch(self.config.type):
             if case('autoplay'):
                 controller_class = locate('tpp.controller.AutoplayController')
                 visualizer_class = locate('tpp.visualizer.NCursesVisualizer')
@@ -130,7 +127,13 @@ class TPPRunner:
             if case():
                 controller_class = locate('tpp.controller.InteractiveController')
                 visualizer_class = locate('tpp.visualizer.NCursesVisualizer')
+
+                from pprint import pprint
+                pprint(controller_class)
+                pprint(visualizer_class)
+
                 self.controller = controller_class(self.input_stream, self.output_stream, visualizer_class())
+
                 break
 
     def run(self):
