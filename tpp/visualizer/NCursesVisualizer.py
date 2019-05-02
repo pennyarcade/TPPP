@@ -16,7 +16,7 @@ class NCursesVisualizer(TPPVisualizer):
 
     def __init__(self):
         """Todo: ApiDoc."""
-        super(NCursesVisualizer, self)
+        super(NCursesVisualizer, self).__init__()
         self.figlet_font = "standard"
 
         self.screen = curses.initscr()
@@ -166,7 +166,7 @@ class NCursesVisualizer(TPPVisualizer):
             # Todo: How does this expression work in python?
             elif char == " ": #[0]..255:
                 if cursor_pos < max_len:
-                    string[cursor_pos: 0] = chr(char)
+                    string = string[:cursor_pos] + chr(char) + string[cursor_pos + 1:]
                     cursor_pos += 1
                 else:
                     curses.beep()
@@ -788,9 +788,9 @@ class NCursesVisualizer(TPPVisualizer):
         self.screen.move(self.termheight - 2, self.indent)
         self.screen.attroff(curses.A_BOLD)  # this is bad
         self.screen.addstr("[slide #%d/%d]" % (cur_page, max_pages))
-        if len(self.footer) > 0:
+        if self.footer:
             self.do_footer(self.footer)
-        if len(self.header) > 0:
+        if self.header:
             self.do_header(self.header)
         if eop:
             self.draw_eop_marker()
