@@ -21,7 +21,7 @@ pep8:
   enable:
     - W601
   options:
-    max-line-length: 99
+    max-line-length: 120
     single-line-if-stmt: n
 
 pylint:

@@ -17,7 +17,7 @@ class TPPVisualizer:
     @staticmethod
     def split_lines(text, width=70):
         """
-        Splits a line of text into several lines.
+        Split a line of text into several lines.
 
         Where each of the result lines is at most _width_ characters long,
         caring about word boundaries, and returns an array of strings.
@@ -379,16 +379,6 @@ class TPPVisualizer:
         """
         raise NotImplementedError()
 
-    @abc.abstractmethod
-    def do_color(self, color):
-        """
-        Todo: ApiDoc.
-
-        :param color:
-        :return:
-        """
-        raise NotImplementedError()
-
     def visualize(self, line, eop):
         """
         Receives a _line_, parses if id necessary, and dispatches it to the correct method.
@@ -401,89 +391,93 @@ class TPPVisualizer:
         :param eop:
         :return boolean: wait for input
         """
+        result = False
         if line.startswith('--heading'):
-            return self.do_heading(line.replace('--heading', '').strip())
-        if line.startswith('--withborder'):
-            return self.do_with_border()
-        if line.startswith('--horline'):
-            return self.do_hor_line()
-        if line.startswith('--color'):
-            return self.do_color(line.replace('--color', '').strip())
-        if line.startswith('--center'):
-            return self.do_center(line.replace('--center', '').strip())
-        if line.startswith('--right'):
-            return self.do_right(line.replace('--right', '').strip())
-        if line.startswith('--exec'):
-            return self.do_exec(line.replace('--exec', '').strip())
-        if line.startswith('---'):
-            return self.do_wait()
-        if line.startswith('--beginoutput'):
-            return self.do_begin_output()
-        if line.startswith('--beginshelloutput'):
-            return self.do_begin_shell_output()
-        if line.startswith('--endoutput'):
-            return self.do_end_output()
-        if line.startswith('--endshelloutput'):
-            return self.do_end_shell_output()
-        if line.startswith('--sleep'):
-            return self.do_sleep(line.replace('--sleep', '').strip())
-        if line.startswith('--boldon'):
-            return self.do_bold_on()
-        if line.startswith('--boldoff'):
-            return self.do_bold_off()
-        if line.startswith('--revon'):
-            return self.do_rev_on()
-        if line.startswith('--revoff'):
-            return self.do_rev_off()
-        if line.startswith('--ulon'):
-            return self.do_ul_on()
-        if line.startswith('--uloff'):
-            return self.do_ul_off()
-        if line.startswith('--beginslideleft'):
-            return self.do_begin_slide_left()
-        if line.startswith('--endslideleft'):
-            return self.do_end_slide()
-        if line.startswith('--endslideright'):
-            return self.do_end_slide()
-        if line.startswith('--endslidetop'):
-            return self.do_end_slide()
-        if line.startswith('--endslidebottom'):
-            return self.do_end_slide()
-        if line.startswith('--beginslideright'):
-            return self.do_begin_slide_right()
-        if line.startswith('--beginslidetop'):
-            return self.do_begin_slide_top()
-        if line.startswith('--beginslidebottom'):
-            return self.do_begin_slide_bottom()
-        if line.startswith('--sethugefont'):
-            return self.do_set_huge_font(line.replace('--sethugefont', '').strip())
-        if line.startswith('--huge'):
-            return self.do_huge(line.replace('--huge', '').strip())
-        if line.startswith('--footer'):
+            result = self.do_heading(line.replace('--heading', '').strip())
+        elif line.startswith('--withborder'):
+            result = self.do_with_border()
+        elif line.startswith('--horline'):
+            result = self.do_hor_line()
+        elif line.startswith('--color'):
+            result = self.do_color(line.replace('--color', '').strip())
+        elif line.startswith('--center'):
+            result = self.do_center(line.replace('--center', '').strip())
+        elif line.startswith('--right'):
+            result = self.do_right(line.replace('--right', '').strip())
+        elif line.startswith('--exec'):
+            result = self.do_exec(line.replace('--exec', '').strip())
+        elif line.startswith('---'):
+            result = self.do_wait()
+        elif line.startswith('--beginoutput'):
+            result = self.do_begin_output()
+        elif line.startswith('--beginshelloutput'):
+            result = self.do_begin_shell_output()
+        elif line.startswith('--endoutput'):
+            result = self.do_end_output()
+        elif line.startswith('--endshelloutput'):
+            result = self.do_end_shell_output()
+        elif line.startswith('--sleep'):
+            result = self.do_sleep(line.replace('--sleep', '').strip())
+        elif line.startswith('--boldon'):
+            result = self.do_bold_on()
+        elif line.startswith('--boldoff'):
+            result = self.do_bold_off()
+        elif line.startswith('--revon'):
+            result = self.do_rev_on()
+        elif line.startswith('--revoff'):
+            result = self.do_rev_off()
+        elif line.startswith('--ulon'):
+            result = self.do_ul_on()
+        elif line.startswith('--uloff'):
+            result = self.do_ul_off()
+        elif line.startswith('--beginslideleft'):
+            result = self.do_begin_slide_left()
+        elif line.startswith('--endslideleft'):
+            result = self.do_end_slide()
+        elif line.startswith('--endslideright'):
+            result = self.do_end_slide()
+        elif line.startswith('--endslidetop'):
+            result = self.do_end_slide()
+        elif line.startswith('--endslidebottom'):
+            result = self.do_end_slide()
+        elif line.startswith('--beginslideright'):
+            result = self.do_begin_slide_right()
+        elif line.startswith('--beginslidetop'):
+            result = self.do_begin_slide_top()
+        elif line.startswith('--beginslidebottom'):
+            result = self.do_begin_slide_bottom()
+        elif line.startswith('--sethugefont'):
+            result = self.do_set_huge_font(line.replace('--sethugefont', '').strip())
+        elif line.startswith('--huge'):
+            result = self.do_huge(line.replace('--huge', '').strip())
+        elif line.startswith('--footer'):
             text = line.replace('--footer', '').strip()
             if text != "":
                 self.footer = text
-            return self.do_footer(self.footer)
-        if line.startswith('--header'):
+            result = self.do_footer(self.footer)
+        elif line.startswith('--header'):
             text = line.replace('--header', '').strip()
             if text != "":
                 self.header = text
-            return self.do_header(self.header)
-        if line.startswith('--title'):
-            return self.do_title(line.replace('--title', '').strip())
-        if line.startswith('--author'):
-            return self.do_author(line.replace('--author', '').strip())
-        if line.startswith('--sleep'):
-            return self.do_sleep(line.replace('--sleep', '').strip())
-        if line.startswith('--date'):
-            return self.do_date(line.replace('--date', '').strip())
-        if line.startswith('--bgcolor'):
-            return self.do_bg_color(line.replace('--bgcolor', '').strip())
-        if line.startswith('--fgcolor'):
-            return self.do_fg_color(line.replace('--fgcolor', '').strip())
-        if line.startswith('--color'):
-            return self.do_color(line.replace('--color', '').strip())
-        return self.print_line(line.strip())
+            result = self.do_header(self.header)
+        elif line.startswith('--title'):
+            result = self.do_title(line.replace('--title', '').strip())
+        elif line.startswith('--author'):
+            result = self.do_author(line.replace('--author', '').strip())
+        elif line.startswith('--sleep'):
+            result = self.do_sleep(line.replace('--sleep', '').strip())
+        elif line.startswith('--date'):
+            result = self.do_date(line.replace('--date', '').strip())
+        elif line.startswith('--bgcolor'):
+            result = self.do_bg_color(line.replace('--bgcolor', '').strip())
+        elif line.startswith('--fgcolor'):
+            result = self.do_fg_color(line.replace('--fgcolor', '').strip())
+        elif line.startswith('--color'):
+            result = self.do_color(line.replace('--color', '').strip())
+        else:
+            result = self.print_line(line.strip())
+
+        return result
 
     def close(self):
         """

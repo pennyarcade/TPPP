@@ -26,6 +26,7 @@ class AutoplayController(TPPController):
         :param secs:
         :param visualizer_class:
         """
+        super(AutoplayController, self).__init__()
         self.filename = filename
         # Todo: Check how to do this reflection thing correctly
         self.vis = visualizer_class

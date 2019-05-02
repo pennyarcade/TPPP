@@ -23,6 +23,7 @@ class ConversionController(TPPController):
         :param output:
         :param visualizer_class:
         """
+        super(ConversionController, self).__init__()
         parser = FileParser(input_file)
         self.pages = parser.get_pages()
         self.vis = visualizer_class(output)

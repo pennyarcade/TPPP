@@ -27,6 +27,7 @@ class TextVisualizer(TPPVisualizer):
 
         :param outputfile: file
         """
+        super('TextVisualizer', self).__init__()
         self.file_handle = outputfile
         self.output_env = False
         self.title = False
